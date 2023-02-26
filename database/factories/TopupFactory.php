@@ -16,7 +16,6 @@ class TopupFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'     => User::factory(),
             'amount'      => $this->faker->numberBetween(20, 1000),
             'created_at'  => Carbon::now()->subDay(1),
             'updated_at'  => Carbon::now()->subDay(1),
