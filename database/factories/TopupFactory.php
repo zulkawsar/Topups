@@ -17,8 +17,8 @@ class TopupFactory extends Factory
     {
         return [
             'amount'      => $this->faker->numberBetween(20, 1000),
-            'created_at'  => Carbon::now()->subDay(1),
-            'updated_at'  => Carbon::now()->subDay(1),
+            'created_at'  => Carbon::now(),
+            'updated_at'  => Carbon::now(),
         ];
     }
 }

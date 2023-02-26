@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(500)->create();
-        \App\Models\Topup::factory(200000)->state(new Sequence(
-            // fn ($sequence) => ['user_id' => \App\Models\User::all()->random()],
-            fn ($sequence) => ['user_id' => rand(1, 500)],
-        ))->create();
+        $this->call([
+            UserSeeder::class,
+            TopupSeeder::class
+        ]);
     }
 }
