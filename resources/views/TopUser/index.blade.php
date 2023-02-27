@@ -4,8 +4,12 @@
 @endsection
 @section('content')
 <div class="row">
-    <input id="datepicker" width="276" />
-    
+    <div class="col-3">
+        <input id="datepicker"/>
+    </div>
+    <div class="col-5">
+        <button type="button" class="btn btn-primary">Generate Topup</button>
+    </div>    
 </div>
 <div class="card p-0">
 
