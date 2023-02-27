@@ -43,7 +43,8 @@ class TopupUserController extends Controller
      */
     public function saveTopup($date)
     {
-        $topups = Topup::whereDate('created_at',Carbon::parse($date)->format('Y-m-d'))->select('user_id', DB::raw('count(id) as count'))
+        $topups = Topup::select('user_id', DB::raw('count(id) as count'))
+        ->whereDate('created_at',Carbon::parse($date)->format('Y-m-d'))
         ->groupBy('user_id')
         ->take(10)->get()->toArray();
 
