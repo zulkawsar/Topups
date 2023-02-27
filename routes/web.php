@@ -14,10 +14,5 @@ use App\Http\Controllers\TopTopupUserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layouts.default');
-});
-
-Route::get('top-users',[TopTopupUserController::class,'index'])->name('top.users');
+Route::get('/',[TopTopupUserController::class,'index'])->name('top.users');
 Route::post('generate-topups',[TopupUserController::class,'topTopup'])->name('topup.users');
