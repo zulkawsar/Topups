@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TopupUserController;
+use App\Http\Controllers\TopTopupUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.default');
 });
+
+Route::get('top-users',[TopTopupUserController::class,'index'])->name('top.users');
+Route::get('generate-topups',[TopupUserController::class,'topTopup'])->name('topup.users');
