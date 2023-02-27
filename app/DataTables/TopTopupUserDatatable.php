@@ -36,6 +36,7 @@ class TopTopupUserDatatable extends DataTable
      */
     public function query(TopTopupUser $model)
     {
+        // usleep( 100 * 10000 );
         return $model->with(['user' => function ($query) {
             $query->select(['id', 'name']);
         }]);
@@ -51,7 +52,7 @@ class TopTopupUserDatatable extends DataTable
         return $this->builder()
                     ->setTableId('topuserdatatable-table')
                     ->columns($this->getColumns())
-                    // ->minifiedAjax()
+                    ->minifiedAjax()
                     ->dom('Blfrtip')
                     ->orderBy(2,'desc')
                     ->parameters([

@@ -17,24 +17,24 @@ Update the Composer ( Before run the composer update command please enable the `
 Composer update
 ```
 
-# Then you need to copy the .env.example to .env
+Then you need to copy the .env.example to .env
 ```
 cp .env.example .env
 ```
 
 The set the database information 
-# DB_DATABASE=laravel
-# DB_USERNAME=root
-# DB_PASSWORD=
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
 
-# Then run the seeder
+Then run the seeder
 ```
 php artisan migrate:fresh --seed
 ```
 Its seeding up 500 Users and 50,000 (you can modify it if you need more records) Topups records. It's take some time, Please wait :)
 After finishing, You need a little bit modify in TopupFactory
 
-# In definition(), just modify subDay(1) -> subDay(2), or you remove it Then run
+In definition(), just modify subDay(1) -> subDay(2), or you remove it Then run
 ```
 php artisan db:seed --class=TopupSeeder
 ```

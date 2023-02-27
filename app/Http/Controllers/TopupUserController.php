@@ -24,11 +24,15 @@ class TopupUserController extends Controller
      *
      * @return Void
      */
-    public function topTopup(Request $request)
+    public function topTopup()
     {
-        // dd(app());
-        $date = $request->date ?? Carbon::now();
+        $date = request()->date ?? Carbon::now();
         TopupUser::dispatch($date);
+        
+        alert()->success('Success')->showConfirmButton(
+            '<a class="btn btn-primary" href="'.route('top.users').'">Close</a>',
+        )->autoClose(false);
+        return redirect()->route('top.users');
     }
 
     /**
@@ -39,59 +43,14 @@ class TopupUserController extends Controller
      */
     public function saveTopup($date)
     {
-        $topups = Topup::whereDate('created_at',Carbon::parse($date)->subDay(1)->format('Y-m-d'))->select('user_id', DB::raw('count(id) as count'))
+        $topups = Topup::whereDate('created_at',Carbon::parse($date)->format('Y-m-d'))->select('user_id', DB::raw('count(id) as count'))
         ->groupBy('user_id')
         ->take(10)->get()->toArray();
 
+        $this->topTopupService->delete();
         if ($topups) {
-            $this->topTopupService->delete();
             $this->topTopupService->save($topups);
-            \Log::info('Success');
         }
         
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

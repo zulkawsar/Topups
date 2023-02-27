@@ -20,4 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('top-users',[TopTopupUserController::class,'index'])->name('top.users');
-Route::get('generate-topups',[TopupUserController::class,'topTopup'])->name('topup.users');
+Route::post('generate-topups',[TopupUserController::class,'topTopup'])->name('topup.users');

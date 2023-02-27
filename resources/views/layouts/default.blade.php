@@ -6,7 +6,6 @@
 
         <title> @yield('title','Topup Users')</title>
         @include('partials.header')
-
     </head>
     <body class="antialiased">
 
